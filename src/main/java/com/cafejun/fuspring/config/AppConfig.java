@@ -2,6 +2,7 @@ package com.cafejun.fuspring.config;
 
 import com.cafejun.fuspring.member.JpaMemberRepository;
 import com.cafejun.fuspring.member.MemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,11 +11,11 @@ import javax.sql.DataSource;
 
 @Configuration
 public class AppConfig {
-//    private final DataSource dataSource;
     private final EntityManager em;
-
-    public AppConfig(EntityManager em) {
-//        this.dataSource = dm;
+    private final DataSource dataSource;
+    @Autowired
+    public AppConfig(DataSource dataSource,EntityManager em) {
+        this.dataSource = dataSource;
         this.em = em;
     }
     @Bean
