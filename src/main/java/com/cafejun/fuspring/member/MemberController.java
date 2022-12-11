@@ -20,6 +20,8 @@ public class MemberController {
         String memberId = memberLoginRequestDto.getMemberId();
         String password = memberLoginRequestDto.getPassword();
         TokenInfo tokenInfo = memberService.login(memberId, password);
+        System.out.println("tokenInfo");
+        System.out.println(tokenInfo);
         return tokenInfo;
     }
 }

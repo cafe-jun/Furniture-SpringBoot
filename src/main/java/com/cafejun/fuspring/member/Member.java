@@ -25,6 +25,9 @@ public class Member implements UserDetails {
     @Column(name = "MEMBER_EMAIL", nullable = false, length = 100, unique = true)
     private String email;
 
+    @Column(nullable = false)
+    private String password;
+
     @ElementCollection(fetch = FetchType.EAGER)
     @Builder.Default
     private List<String> roles = new ArrayList<>();
