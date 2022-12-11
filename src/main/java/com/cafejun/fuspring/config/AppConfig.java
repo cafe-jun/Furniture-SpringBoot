@@ -1,4 +1,4 @@
-package com.cafejun.fuspring;
+package com.cafejun.fuspring.config;
 
 import com.cafejun.fuspring.member.JpaMemberRepository;
 import com.cafejun.fuspring.member.MemberRepository;
