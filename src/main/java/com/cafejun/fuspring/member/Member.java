@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
 public class Member implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "MEMBER_SEQ_ID")
-    private Long memberSeqId;
-    @Column(name = "MEMBER_EMAIL", nullable = false, length = 100, unique = true)
+    @Column()
+    private Long id;
+    @Column(nullable = false, length = 100, unique = true)
     private String email;
 
     @Column(nullable = false)
@@ -37,9 +37,11 @@ public class Member implements UserDetails {
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
     }
+
+    // getUsername,getPassword 의 정보를 가지고 인증
     @Override
     public String getPassword() {
-        return null;
+        return password;
     }
 
     @Override

@@ -17,11 +17,9 @@ public class MemberController {
 
     @PostMapping("/login")
     public TokenInfo login(@RequestBody MemberLoginRequestDto memberLoginRequestDto) {
-        String memberId = memberLoginRequestDto.getMemberId();
+        String email = memberLoginRequestDto.getEmail();
         String password = memberLoginRequestDto.getPassword();
-        TokenInfo tokenInfo = memberService.login(memberId, password);
-        System.out.println("tokenInfo");
-        System.out.println(tokenInfo);
+        TokenInfo tokenInfo = memberService.login(email, password);
         return tokenInfo;
     }
 }

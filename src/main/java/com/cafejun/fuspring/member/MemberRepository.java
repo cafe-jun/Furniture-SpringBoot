@@ -1,12 +1,13 @@
 package com.cafejun.fuspring.member;
 
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 import java.util.Optional;
 
-public interface MemberRepository {
-    Optional<Member> findByUserEmail(String email);
-    Member save(Member member);
-    Optional<Member> findById(Long id);
-    List<Member> findAll();
-    Optional<Member> findByMemberId(String username);
+
+@Repository
+public interface MemberRepository extends JpaRepository<Member, Long> {
+    Optional<Member> findByEmail(String email);
 }
+
