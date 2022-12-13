@@ -3,10 +3,10 @@ package com.cafejun.fuspring.member;
 import com.cafejun.fuspring.jwt.TokenInfo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -21,5 +21,9 @@ public class MemberController {
         String password = memberLoginRequestDto.getPassword();
         TokenInfo tokenInfo = memberService.login(email, password);
         return tokenInfo;
+    }
+    @GetMapping("hello")
+    public List<String> Hello(){
+        return Arrays.asList("서버 포트는 8080", "리액트 포트는 3000");
     }
 }
