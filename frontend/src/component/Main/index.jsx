@@ -96,7 +96,7 @@ const Main = () => {
                             className="pl-15 pr--60"
                           >
                             <img
-                              src="../../images/livingroom/216_detail1.jpg"
+                              src={require("../../assets/images/livingroom/216_detail1.jpg")}
                               alt="Slider"
                               className="mx-auto"
                             />
@@ -202,7 +202,7 @@ const Main = () => {
                     <figure className="feature-product__image mb-sm--30">
                       <a href="deco_light_details.fu?imageIndex=420&cateEn=light">
                         <img
-                          src="../../images/deco/detail/light/420_details_10.jpg"
+                          src={require("../../assets/images/deco/detail/light/420_details_10.jpg")}
                           alt="Feature Product"
                         />
                       </a>
