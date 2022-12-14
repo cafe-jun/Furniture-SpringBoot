@@ -5,6 +5,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,11 +18,21 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping("/login")
-    public TokenInfo login(@RequestBody MemberLoginRequestDto memberLoginRequestDto) {
+    public String login(@RequestBody MemberLoginRequestDto memberLoginRequestDto, HttpServletResponse response) {
         String email = memberLoginRequestDto.getEmail();
         String password = memberLoginRequestDto.getPassword();
         TokenInfo tokenInfo = memberService.login(email, password);
-        return tokenInfo;
+        Cookie accessTokenCookie = new Cookie("access_token",tokenInfo.getAccessToken());
+//        accessTokenCookie.setSecure(true);
+//        accessTokenCookie.setHttpOnly(true);
+        accessTokenCookie.setPath("/");
+        Cookie refreshTokenCookie = new Cookie("refresh_token",tokenInfo.getRefreshToken());
+//        refreshTokenCookie.setSecure(true);
+//        refreshTokenCookie.setHttpOnly(true);
+        refreshTokenCookie.setPath("/");
+        response.addCookie(accessTokenCookie);
+        response.addCookie(refreshTokenCookie);
+        return "success";
     }
     @GetMapping("hello")
     public List<String> Hello(){

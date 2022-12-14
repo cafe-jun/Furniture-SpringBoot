@@ -5,17 +5,19 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
+import { CookiesProvider } from "react-cookie";
 
 const queryClient = new QueryClient();
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      {/* devtools */}
-      <ReactQueryDevtools initialIsOpen={true} />
-      <App />
-    </QueryClientProvider>
+    <CookiesProvider>
+      <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools initialIsOpen={true} />
+        <App />
+      </QueryClientProvider>
+    </CookiesProvider>
   </React.StrictMode>
 );
 

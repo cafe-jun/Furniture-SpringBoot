@@ -1,21 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useMutation, useQuery } from "react-query";
 import useInput from "../../hook/useInput";
-import { getHello, memberLogin } from "../common/api";
+import { getHello, authLogin } from "../../common/api";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { getCookie } from "../../common/cookie";
 
 const Login = () => {
   const [email, onChangeEmail, setEmail] = useInput("");
   const [password, onChangePassword, setPassword] = useInput("");
-
+  const navigate = useNavigate();
+  const { state } = useLocation();
   const { register, handleSubmit, errors } = useForm({
     mode: "onChange",
   });
 
-  const { mutate, isLoading } = useMutation(memberLogin, {
-    onSuccess: (data) => {
-      console.log(data);
-    },
+  const { mutate, isLoading } = useMutation(authLogin, {
+    onSuccess: (data) => {},
     onError: () => {
       alert("there was an error");
     },
@@ -26,6 +27,12 @@ const Login = () => {
   const onSubmit = (data) => {
     mutate({ email, password });
   };
+
+  useEffect(() => {
+    if (getCookie("access_token")) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <div>
