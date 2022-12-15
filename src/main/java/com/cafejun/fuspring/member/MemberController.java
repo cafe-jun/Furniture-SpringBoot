@@ -23,6 +23,7 @@ public class MemberController {
         String password = memberLoginRequestDto.getPassword();
         TokenInfo tokenInfo = memberService.login(email, password);
         Cookie accessTokenCookie = new Cookie("access_token",tokenInfo.getAccessToken());
+        // 운영 배포시 적용 필요 (https 로 작업함)
 //        accessTokenCookie.setSecure(true);
 //        accessTokenCookie.setHttpOnly(true);
         accessTokenCookie.setPath("/");
