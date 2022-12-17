@@ -1,6 +1,6 @@
 //package com.cafejun.fuspring;
 //
-//import com.cafejun.fuspring.member.MemberRepository;
+//import com.cafejun.fuspring.repository.member.MemberRepository;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.context.annotation.Configuration;
 //

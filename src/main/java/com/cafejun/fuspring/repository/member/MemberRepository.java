@@ -1,5 +1,6 @@
-package com.cafejun.fuspring.member;
+package com.cafejun.fuspring.repository.member;
 
+import com.cafejun.fuspring.domain.entity.member.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
