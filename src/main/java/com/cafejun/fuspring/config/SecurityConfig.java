@@ -31,10 +31,7 @@ public class SecurityConfig   {
     private final CustomAuthorizationRequestRepository customAuthorizationRequestRepository;
     @Bean
     public CustomOncePerRequestFilter customOncePerRequestFilter() {
-        return n
-
-
-        ew CustomOncePerRequestFilter();
+        return new CustomOncePerRequestFilter();
     }
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
