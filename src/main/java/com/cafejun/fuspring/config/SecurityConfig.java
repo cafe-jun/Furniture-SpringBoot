@@ -3,11 +3,8 @@ package com.cafejun.fuspring.config;
 import com.cafejun.fuspring.auth.CustomOAuth2UserService;
 import com.cafejun.fuspring.config.security.handler.CustomSimpleUrlAuthenticationFailureHandler;
 import com.cafejun.fuspring.config.security.handler.CustomSimpleUrlAuthenticationSuccessHandler;
-import com.cafejun.fuspring.config.security.handler.OAuth2SuccessHandler;
 import com.cafejun.fuspring.config.security.token.CustomAuthenticationEntryPoint;
 import com.cafejun.fuspring.config.security.token.CustomOncePerRequestFilter;
-import com.cafejun.fuspring.jwt.JwtAuthenticationFilter;
-import com.cafejun.fuspring.jwt.JwtTokenProvider;
 import com.cafejun.fuspring.repository.auth.CustomAuthorizationRequestRepository;
 import com.cafejun.fuspring.service.auth.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
@@ -34,7 +31,10 @@ public class SecurityConfig   {
     private final CustomAuthorizationRequestRepository customAuthorizationRequestRepository;
     @Bean
     public CustomOncePerRequestFilter customOncePerRequestFilter() {
-        return new CustomOncePerRequestFilter();
+        return n
+
+
+        ew CustomOncePerRequestFilter();
     }
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
