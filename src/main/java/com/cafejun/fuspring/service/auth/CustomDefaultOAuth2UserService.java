@@ -36,13 +36,17 @@ public class CustomDefaultOAuth2UserService extends DefaultOAuth2UserService {
         DefaultAssert.isAuthentication(!oAuth2UserInfo.getEmail().isEmpty());
         Optional<Member> memberOptional = memberRepository.findByEmail(oAuth2UserInfo.getEmail());
         Member member;
+        System.out.println("CustomDefaultOAuth2UserService.processOAuth2User"+memberOptional.isPresent());
         if(memberOptional.isPresent()) {
             member = memberOptional.get();
+            System.out.println("CustomDefaultOAuth2UserService.updateExistingMember");
             DefaultAssert.isAuthentication(member.getProvider().equals(Provider.valueOf(oAuth2UserRequest.getClientRegistration().getRegistrationId())));
             member = updateExistingMember(member, oAuth2UserInfo);
+
         } else {
             member = registerNewUser(oAuth2UserRequest, oAuth2UserInfo);
         }
+        System.out.println("CustomDefaultOAuth2UserService.processOAuth2User"+member);
         return MemberPrincipal.create(member, oAuth2User.getAttributes());
     }
 

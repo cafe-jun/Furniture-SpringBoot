@@ -34,7 +34,7 @@ public class AuthService {
                         signInRequest.getPassword()
                 )
         );
-
+        System.out.println("AuthService.signin");
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         TokenMapping tokenMapping = customTokenProviderService.createToken(authentication);

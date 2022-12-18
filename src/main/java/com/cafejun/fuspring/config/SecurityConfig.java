@@ -6,6 +6,7 @@ import com.cafejun.fuspring.config.security.handler.CustomSimpleUrlAuthenticatio
 import com.cafejun.fuspring.config.security.token.CustomAuthenticationEntryPoint;
 import com.cafejun.fuspring.config.security.token.CustomOncePerRequestFilter;
 import com.cafejun.fuspring.repository.auth.CustomAuthorizationRequestRepository;
+import com.cafejun.fuspring.service.auth.CustomDefaultOAuth2UserService;
 import com.cafejun.fuspring.service.auth.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -32,7 +33,7 @@ import java.util.List;
 @EnableWebSecurity // Spring Security 설정을 활성화
 public class SecurityConfig   {
     private final CustomUserDetailsService customUserDetailsService;
-    private final CustomOAuth2UserService customOAuth2UserService;
+    private final CustomDefaultOAuth2UserService customOAuth2UserService;
     private final CustomSimpleUrlAuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler;
     private final CustomSimpleUrlAuthenticationFailureHandler oAuth2AuthenticationFailureHandler;
     private final CustomAuthorizationRequestRepository customAuthorizationRequestRepository;

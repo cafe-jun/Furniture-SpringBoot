@@ -90,7 +90,7 @@ public class CustomTokenProviderService {
 
     public boolean validateToken(String token) {
         try {
-            //log.info("bearerToken = {} \n oAuth2Config.getAuth()={}", token, oAuth2Config.getAuth().getTokenSecret());
+            log.info("bearerToken = {} \n oAuth2Config.getAuth()={}", token, oAuth2Config.getAuth().getTokenSecret());
             Jwts.parserBuilder().setSigningKey(getKey()).build().parseClaimsJws(token);
             return true;
         } catch (io.jsonwebtoken.security.SecurityException ex) {
@@ -107,6 +107,7 @@ public class CustomTokenProviderService {
         return false;
     }
     private Key getKey() {
+        System.out.println("CustomTokenProviderService.getKey"+oAuth2Config.getAuth().getTokenSecret());
         String secretKey = oAuth2Config.getAuth().getTokenSecret();
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         return Keys.hmacShaKeyFor(keyBytes);
