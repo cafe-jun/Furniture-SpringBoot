@@ -38,6 +38,7 @@ public class Member extends DefaultTime {
     @Column(nullable = false)
     private Boolean emailVerified = false;
 
+    @Column(nullable = true)
     private String imageUrl;
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -53,12 +54,13 @@ public class Member extends DefaultTime {
 
     public Member(){}
     @Builder
-    public Member(String email, String name, Boolean emailVerified, Provider provider, String password, Role role, String providerId) {
+    public Member(String email, String name, Boolean emailVerified, Provider provider, String password, Role role, String providerId,String imageUrl) {
         this.email = email;
         this.name = name;
         this.provider = provider;
         this.password = password;
         this.role = role;
+        this.imageUrl = imageUrl;
     }
     public void updateName(String name) {
         this.name = name;

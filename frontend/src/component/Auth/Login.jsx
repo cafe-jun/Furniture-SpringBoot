@@ -5,6 +5,19 @@ import { getHello, authLogin } from "../../common/api";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { getCookie } from "../../common/cookie";
+import {
+  FACEBOOK_AUTH_URL,
+  GITHUB_AUTH_URL,
+  GOOGLE_AUTH_URL,
+  KAKAO_AUTH_URL,
+  NAVER_AUTH_URL,
+} from "../../common/constrant";
+import fbLogo from "../../common/img/social/fb-logo.png";
+import googleLogo from "../../common/img/social/google-logo.png";
+import githubLogo from "../../common/img/social/github-logo.png";
+import kakaoLogo from "../../common/img/social/kakao-logo.png";
+import naverLogo from "../../common/img/social/naver-logo.png";
+import "./Login.css";
 
 const Login = () => {
   const [email, onChangeEmail, setEmail] = useInput("");
@@ -29,6 +42,7 @@ const Login = () => {
   };
 
   useEffect(() => {
+    // access token
     if (getCookie("access_token")) {
       navigate("/");
     }
@@ -36,19 +50,6 @@ const Login = () => {
 
   return (
     <div>
-      <section
-        className="page-title-area bg-image ptb--80"
-        data-bg-image={require("../../assets/img/login/login.jpg")}
-      >
-        <div className="container">
-          <div className="row">
-            <div className="col-6 col-md-4"></div>
-            <div className="col-6 col-md-4">
-              <h1 className="page-title">로그인</h1>
-            </div>
-          </div>
-        </div>
-      </section>
       <div className="main-content-wrapper">
         <div className="page-content-inner pt--75 pb--80">
           <div className="container">
@@ -115,6 +116,7 @@ const Login = () => {
                           />
                           <span>아이디 저장</span>
                         </label>
+                        <br />
                       </div>
                       <a className="forgot-pass" href="/">
                         <b>&nbsp;&nbsp;회원가입&nbsp;&nbsp;</b>
@@ -125,12 +127,27 @@ const Login = () => {
                     </form>
                   </h3>
                   <br />
-                  <a href="https://kauth.kakao.com/oauth/authorize?client_id=31d857a43c06796d21fa6fd041d12cd6&redirect_uri=http://192.168.16.12:8080<%=cp%>/login.fu&response_type=code">
-                    <img
-                      src={require("../../assets/img/login/kakao_login.png")}
-                      alt="Logo"
-                    />
-                  </a>
+                  <div className="social-login">
+                    <a
+                      className="btn btn-block social-btn google"
+                      href={GOOGLE_AUTH_URL}
+                    >
+                      <img src={googleLogo} alt="Google" />
+                    </a>
+
+                    <a
+                      className="btn btn-block social-btn kakao"
+                      href={KAKAO_AUTH_URL}
+                    >
+                      <img src={kakaoLogo} alt="Kakao" />
+                    </a>
+                    <a
+                      className="btn btn-block social-btn kakao"
+                      href={NAVER_AUTH_URL}
+                    >
+                      <img src={naverLogo} alt="Naver" />
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>

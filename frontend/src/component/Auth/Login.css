@@ -1,0 +1,35 @@
+.social-login {
+  display: flex;
+  flex-direction: row;
+  margin-left: 24px;
+}
+
+.social-btn {
+  color: azure;
+  background-color: white;
+  padding: 0px;
+  border: 0px;
+}
+
+.social-btn:hover {
+  color: aliceblue;
+}
+
+.social-btn img {
+  height: 48px;
+  float: left;
+  margin-top: 10px;
+  width: 48px;
+}
+
+.social-btn.google {
+  margin-top: 0px;
+}
+
+.social-btn.kakao img {
+  margin-top: 5px;
+}
+
+.social-btn.naver img {
+  margin-top: 5px;
+}
