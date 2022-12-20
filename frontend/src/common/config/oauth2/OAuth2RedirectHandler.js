@@ -1,47 +1,38 @@
-import React, { Component } from "react";
-import { ACCESS_TOKEN, REFRESH_TOKEN } from "../../constants";
-import { Redirect } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { ACCESS_TOKEN, REFRESH_TOKEN } from "../../constrant";
+import { Navigate } from "react-router-dom";
 
-class OAuth2RedirectHandler extends Component {
-  getUrlParameter(name) {
+const OAuth2RedirectHandler = () => {
+  const [token, setToken] = useState("");
+  const [error, setError] = useState("");
+
+  const getUrlParameter = (name) => {
     name = name.replace(/[\\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
-
-    var results = regex.exec(this.props.location.search);
+    const regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+    const results = regex.exec(this.props.location.search);
     return results === null
       ? ""
       : decodeURIComponent(results[1].replace(/\+/g, " "));
-  }
+  };
 
-  render() {
-    const token = this.getUrlParameter("token");
-    const error = this.getUrlParameter("error");
-
+  useEffect(() => {
+    setToken(getUrlParameter("token"));
+    setError(getUrlParameter("error"));
     if (token) {
       localStorage.setItem(ACCESS_TOKEN, token);
       localStorage.setItem(REFRESH_TOKEN, null);
-      return (
-        <Redirect
-          to={{
-            pathname: "/profile",
-            state: { from: this.props.location },
-          }}
-        />
-      );
-    } else {
-      return (
-        <Redirect
-          to={{
-            pathname: "/login",
-            state: {
-              from: this.props.location,
-              error: error,
-            },
-          }}
-        />
-      );
     }
-  }
-}
+  }, []);
+  return token ? (
+    <Navigate replace to="/" />
+  ) : (
+    <Navigate
+      replace
+      to={{
+        to: "/login",
+      }}
+    />
+  );
+};
 
 export default OAuth2RedirectHandler;
