@@ -1,4 +1,4 @@
-package com.cafejun.fuspring.member;
+package com.cafejun.back.member;
 
 import lombok.Data;
 

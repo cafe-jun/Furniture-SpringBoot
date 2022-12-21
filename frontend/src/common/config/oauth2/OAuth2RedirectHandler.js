@@ -1,28 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../../constrant";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 
 const OAuth2RedirectHandler = () => {
   const [token, setToken] = useState("");
   const [error, setError] = useState("");
-
-  const getUrlParameter = (name) => {
+  const location = useLocation().search;
+  console.log(location);
+  const getUrlParameter = (name, location) => {
     name = name.replace(/[\\[]/, "\\[").replace(/[\]]/, "\\]");
     const regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
-    const results = regex.exec(this.props.location.search);
+    const results = regex.exec();
     return results === null
       ? ""
       : decodeURIComponent(results[1].replace(/\+/g, " "));
   };
 
-  useEffect(() => {
-    setToken(getUrlParameter("token"));
-    setError(getUrlParameter("error"));
-    if (token) {
-      localStorage.setItem(ACCESS_TOKEN, token);
-      localStorage.setItem(REFRESH_TOKEN, null);
-    }
-  }, []);
   return token ? (
     <Navigate replace to="/" />
   ) : (
