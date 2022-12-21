@@ -9,6 +9,7 @@ import com.cafejun.fuspring.domain.entity.member.Provider;
 import com.cafejun.fuspring.domain.entity.member.Role;
 import com.cafejun.fuspring.repository.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class CustomDefaultOAuth2UserService extends DefaultOAuth2UserService {
@@ -36,17 +38,16 @@ public class CustomDefaultOAuth2UserService extends DefaultOAuth2UserService {
         DefaultAssert.isAuthentication(!oAuth2UserInfo.getEmail().isEmpty());
         Optional<Member> memberOptional = memberRepository.findByEmail(oAuth2UserInfo.getEmail());
         Member member;
-        System.out.println("CustomDefaultOAuth2UserService.processOAuth2User"+memberOptional.isPresent());
+        log.info("CustomDefaultOAuth2UserService.processOAuth2User, {}",memberOptional.isPresent());
         if(memberOptional.isPresent()) {
             member = memberOptional.get();
-            System.out.println("CustomDefaultOAuth2UserService.updateExistingMember");
             DefaultAssert.isAuthentication(member.getProvider().equals(Provider.valueOf(oAuth2UserRequest.getClientRegistration().getRegistrationId())));
             member = updateExistingMember(member, oAuth2UserInfo);
 
         } else {
             member = registerNewUser(oAuth2UserRequest, oAuth2UserInfo);
         }
-        System.out.println("CustomDefaultOAuth2UserService.processOAuth2User"+member);
+        log.info("CustomDefaultOAuth2UserService.processOAuth2User, {}",member.toString());
         return MemberPrincipal.create(member, oAuth2User.getAttributes());
     }
 

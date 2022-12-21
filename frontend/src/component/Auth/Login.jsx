@@ -2,10 +2,11 @@ import React, { useEffect } from "react";
 import { useMutation, useQuery } from "react-query";
 import useInput from "../../hook/useInput";
 import { getHello, authLogin } from "../../common/api";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { getCookie } from "../../common/cookie";
 import {
+  ACCESS_TOKEN,
   FACEBOOK_AUTH_URL,
   GITHUB_AUTH_URL,
   GOOGLE_AUTH_URL,
@@ -48,7 +49,9 @@ const Login = () => {
     }
   }, []);
 
-  return (
+  return getCookie(ACCESS_TOKEN) ? (
+    <Navigate replace to="/" />
+  ) : (
     <div>
       <div className="main-content-wrapper">
         <div className="page-content-inner pt--75 pb--80">
@@ -142,7 +145,7 @@ const Login = () => {
                       <img src={kakaoLogo} alt="Kakao" />
                     </a>
                     <a
-                      className="btn btn-block social-btn kakao"
+                      className="btn btn-block social-btn naver"
                       href={NAVER_AUTH_URL}
                     >
                       <img src={naverLogo} alt="Naver" />
