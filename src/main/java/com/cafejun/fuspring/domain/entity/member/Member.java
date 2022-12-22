@@ -68,4 +68,9 @@ public class Member extends DefaultTime {
     public void updateImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+
+    @Override
+    public String toString() {
+        return this.email+":"+this.name+":"+this.provider;
+    }
 }
