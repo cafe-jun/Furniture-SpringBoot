@@ -6,11 +6,20 @@ export async function getHello() {
   return data;
 }
 
-export const authLogin = async (data) => {
+export const SignIn = async (data) => {
   return apiWithoutInterceptor
-    .post("/members/login", {
+    .post("/autn/signin", {
       email: data.email,
       password: data.password,
     })
     .then((response) => response.data);
+};
+
+export const SignUp = async (data) => {
+  console.log(data);
+  return apiWithoutInterceptor.post("auth/signup", {
+    email: data.email,
+    password: data.password,
+    name: data.name,
+  });
 };

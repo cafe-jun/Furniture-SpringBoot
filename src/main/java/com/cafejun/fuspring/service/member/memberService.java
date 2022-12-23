@@ -21,4 +21,5 @@ public class memberService {
         ApiResponse apiResponse = ApiResponse.builder().check(true).information(member.get()).build();
         return ResponseEntity.ok(apiResponse);
     }
+
 }

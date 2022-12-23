@@ -1,21 +1,17 @@
 import React, { useEffect } from "react";
-import { useMutation, useQuery } from "react-query";
+import { useMutation } from "react-query";
 import useInput from "../../hook/useInput";
-import { getHello, authLogin } from "../../common/api";
+import { SignIn, authLogin } from "../../common/api";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { getCookie } from "../../common/cookie";
 import {
   ACCESS_TOKEN,
-  FACEBOOK_AUTH_URL,
-  GITHUB_AUTH_URL,
   GOOGLE_AUTH_URL,
   KAKAO_AUTH_URL,
   NAVER_AUTH_URL,
 } from "../../common/constrant";
-import fbLogo from "../../common/img/social/fb-logo.png";
 import googleLogo from "../../common/img/social/google-logo.png";
-import githubLogo from "../../common/img/social/github-logo.png";
 import kakaoLogo from "../../common/img/social/kakao-logo.png";
 import naverLogo from "../../common/img/social/naver-logo.png";
 import "./Login.css";
@@ -29,7 +25,7 @@ const Login = () => {
     mode: "onChange",
   });
 
-  const { mutate, isLoading } = useMutation(authLogin, {
+  const { mutate, isLoading } = useMutation(SignIn, {
     onSuccess: (data) => {},
     onError: () => {
       alert("there was an error");
@@ -121,7 +117,7 @@ const Login = () => {
                         </label>
                         <br />
                       </div>
-                      <a className="forgot-pass" href="/">
+                      <a className="forgot-pass" href="/register">
                         <b>&nbsp;&nbsp;회원가입&nbsp;&nbsp;</b>
                       </a>
                       <a className="forgot-pass" href="/">

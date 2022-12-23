@@ -1,6 +1,7 @@
 package com.cafejun.fuspring.controller.auth;
 
 import com.cafejun.fuspring.payload.request.auth.SignInRequest;
+import com.cafejun.fuspring.payload.request.auth.SignUpRequest;
 import com.cafejun.fuspring.service.auth.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -22,5 +23,11 @@ public class AuthController {
             @Valid @RequestBody SignInRequest signInRequest
     ) {
         return authService.signin(signInRequest);
+    }
+    @PostMapping(value = "signup")
+    public ResponseEntity<?> signup(
+            @Valid @RequestBody SignUpRequest signUpRequest
+    ) {
+        return authService.signup(signUpRequest);
     }
 }
