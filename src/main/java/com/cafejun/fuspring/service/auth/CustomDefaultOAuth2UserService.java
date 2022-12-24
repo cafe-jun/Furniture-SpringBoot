@@ -38,8 +38,6 @@ public class CustomDefaultOAuth2UserService extends DefaultOAuth2UserService {
         DefaultAssert.isAuthentication(!oAuth2UserInfo.getEmail().isEmpty());
         Optional<Member> memberOptional = memberRepository.findByEmail(oAuth2UserInfo.getEmail());
         Member member;
-        log.info("OAuth2UserInfo, {}",oAuth2UserInfo.toString());
-        log.info("CustomDefaultOAuth2UserService.processOAuth2User, {}",memberOptional.isPresent());
         if(memberOptional.isPresent()) {
             member = memberOptional.get();
             DefaultAssert.isAuthentication(member.getProvider().equals(Provider.valueOf(oAuth2UserRequest.getClientRegistration().getRegistrationId())));
@@ -48,7 +46,6 @@ public class CustomDefaultOAuth2UserService extends DefaultOAuth2UserService {
         } else {
             member = registerNewUser(oAuth2UserRequest, oAuth2UserInfo);
         }
-        log.info("CustomDefaultOAuth2UserService.processOAuth2User, {}",member.toString());
         return MemberPrincipal.create(member, oAuth2User.getAttributes());
     }
 

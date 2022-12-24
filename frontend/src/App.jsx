@@ -13,6 +13,8 @@ import Login from "./component/Auth/Login";
 import Register from "./component/Auth/Register";
 import Main from "./component/Main";
 import OAuth2RedirectHandler from "./common/config/oauth2/OAuth2RedirectHandler";
+import SearchPws from "./component/Auth/SearchPws";
+import Profile from "./component/Auth/Profile";
 
 function App() {
   return (
@@ -21,8 +23,10 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/signin" element={<Login />} />
+          <Route path="/signup" element={<Register />} />
+          <Route path="/searchPwd" element={<SearchPws />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/oauth2/redirect" element={<OAuth2RedirectHandler />} />
         </Routes>
       </Router>

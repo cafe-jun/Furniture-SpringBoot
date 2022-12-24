@@ -26,7 +26,9 @@ const Login = () => {
   });
 
   const { mutate, isLoading } = useMutation(SignIn, {
-    onSuccess: (data) => {},
+    onSuccess: (data) => {
+      console.log("로그인 성공 처리");
+    },
     onError: () => {
       alert("there was an error");
     },

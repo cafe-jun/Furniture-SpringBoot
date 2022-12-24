@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 @RequiredArgsConstructor
 @Service
-public class memberService {
+public class MemberService {
     private final MemberRepository memberRepository;
 
     public ResponseEntity<?> readByMember(MemberPrincipal memberPrincipal) {
@@ -21,5 +21,7 @@ public class memberService {
         ApiResponse apiResponse = ApiResponse.builder().check(true).information(member.get()).build();
         return ResponseEntity.ok(apiResponse);
     }
+
+
 
 }

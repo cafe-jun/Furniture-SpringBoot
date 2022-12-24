@@ -16,10 +16,16 @@ export const SignIn = async (data) => {
 };
 
 export const SignUp = async (data) => {
-  console.log(data);
   return apiWithoutInterceptor.post("auth/signup", {
     email: data.email,
     password: data.password,
+    name: data.name,
+  });
+};
+
+export const Profile = async (data) => {
+  return apiWithoutInterceptor.post("member/profile", {
+    email: data.email,
     name: data.name,
   });
 };
