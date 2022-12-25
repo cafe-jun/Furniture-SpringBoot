@@ -95,7 +95,6 @@ const Footer = () => {
                     <li>
                       <a href="#">Twitter</a>
                     </li>{" "}
-                    -->
                     <li>
                       <a href="#">Linkedin</a>
                     </li>

@@ -88,6 +88,15 @@ public class CustomTokenProviderService {
         return authentication;
     }
 
+    public Long getExpiration(String token) {
+        // accessToken 남은 유효시간
+        Date expiration = Jwts.parserBuilder().setSigningKey(getKey()).build().parseClaimsJws(token).getBody().getExpiration();
+        // 현재 시간
+        Long now = new Date().getTime();
+        //시간 계산
+        return (expiration.getTime()-now);
+    }
+
     public boolean validateToken(String token) {
         try {
             log.info("bearerToken = {} \n oAuth2Config.getAuth()={}", token, oAuth2Config.getAuth().getTokenSecret());

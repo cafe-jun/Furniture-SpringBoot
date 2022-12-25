@@ -23,23 +23,6 @@ const Header = () => {
                     <div className="header__main-center">
                       <nav className="main-navigation text-center d-none d-lg-block">
                         <ul className="mainmenu">
-                          <li className="mainmenu__item menu-item-has-children">
-                            <a href="company.fu" className="mainmenu__link">
-                              <span className="mm-text">회사소개</span>
-                            </a>
-                            <ul className="sub-menu">
-                              <li>
-                                <a href="home.fu">
-                                  <span className="mm-text">Home One</span>
-                                </a>
-                              </li>
-                              <li>
-                                <a href="home2.fu">
-                                  <span className="mm-text">Home Two</span>
-                                </a>
-                              </li>
-                            </ul>
-                          </li>
                           <li className="mainmenu__item menu-item-has-children megamenu-holder">
                             <a href="" className="mainmenu__link">
                               <span className="mm-text">제 품</span>

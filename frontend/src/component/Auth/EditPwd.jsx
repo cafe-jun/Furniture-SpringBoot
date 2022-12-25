@@ -1,6 +1,6 @@
 import React from "react";
 
-const ChangePwd = () => {
+const EditPwd = () => {
   return (
     <div>
       <div className="form__group mb--20">
@@ -28,4 +28,4 @@ const ChangePwd = () => {
   );
 };
 
-export default ChangePwd;
+export default EditPwd;

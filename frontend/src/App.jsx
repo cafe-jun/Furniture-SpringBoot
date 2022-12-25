@@ -1,9 +1,3 @@
-import logo from "./logo.svg";
-
-import { useEffect, useState } from "react";
-
-import loadable from "@loadable/component";
-
 import Header from "./component/Header";
 import "./assets/css/vendor.css";
 import "./assets/css/main.css";
@@ -15,6 +9,7 @@ import Main from "./component/Main";
 import OAuth2RedirectHandler from "./common/config/oauth2/OAuth2RedirectHandler";
 import SearchPws from "./component/Auth/SearchPws";
 import Profile from "./component/Auth/Profile";
+import EditPwd from "./component/Auth/EditPwd";
 
 function App() {
   return (
@@ -25,8 +20,9 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/signin" element={<Login />} />
           <Route path="/signup" element={<Register />} />
-          <Route path="/searchPwd" element={<SearchPws />} />
+          <Route path="/search_password" element={<SearchPws />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/edit_password" element={<EditPwd />} />
           <Route path="/oauth2/redirect" element={<OAuth2RedirectHandler />} />
         </Routes>
       </Router>

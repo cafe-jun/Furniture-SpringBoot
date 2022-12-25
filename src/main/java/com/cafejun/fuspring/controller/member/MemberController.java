@@ -1,6 +1,8 @@
 package com.cafejun.fuspring.controller.member;
 
 
+import com.cafejun.fuspring.config.security.token.CurrentMember;
+import com.cafejun.fuspring.config.security.token.MemberPrincipal;
 import com.cafejun.fuspring.service.member.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,11 +21,11 @@ public class MemberController {
 
     private final MemberService memberService;
 
-//    @GetMapping(value = "/profile")
-//    public ResponseEntity<?> getProfile(
-////            @Valid @RequestParam
-//    ) {
-//
-//    }
+    @GetMapping(value = "/profile")
+    public ResponseEntity<?> getProfile(
+            @Valid @RequestParam @CurrentMember MemberPrincipal memberPrincipal
+    ) {
+        return memberService.profile(memberPrincipal);
+    }
 
 }

@@ -1,5 +1,4 @@
 import React from "react";
-import ChangePwd from "./ChangePwd";
 
 const Profile = () => {
   return (
@@ -10,7 +9,7 @@ const Profile = () => {
             <div className="col-md-4"></div>
             <div className="col-md-4">
               <div className="login-box">
-                <h3 className="heading__terriary mb--30">회원수정</h3>
+                <h3 className="heading__terriary mb--30">회원정보</h3>
                 <form
                   className="form form--login"
                   name="register"
@@ -38,7 +37,6 @@ const Profile = () => {
                         name="name"
                       />
                     </div>
-                    <ChangePwd />
                   </div>
                 </form>
               </div>
