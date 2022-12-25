@@ -6,7 +6,7 @@ export async function getHello() {
   return data;
 }
 
-export const SignIn = async (data) => {
+export const SignInApi = async (data) => {
   return apiWithoutInterceptor
     .post("/autn/signin", {
       email: data.email,
