@@ -1,17 +1,17 @@
 import React from "react";
 import useInput from "../../hook/useInput";
-import { SignUp } from "../../common/api";
+import { SignUpApi } from "../../common/api";
 import { useMutation } from "react-query";
 import { useForm } from "react-hook-form";
 
-const Register = () => {
+const SignUp = () => {
   const [email, onChangeEmail, setEmail] = useInput("");
   const [password, onChangePassword, setPassword] = useInput("");
   const [name, onChangeName, setName] = useInput("");
   const { register, handleSubmit, errors } = useForm({
     mode: "onChange",
   });
-  const { mutate, isLoading } = useMutation(SignUp, {
+  const { mutate, isLoading } = useMutation(SignUpApi, {
     onSuccess: (data) => {},
     onError: () => {
       alert("there was an error");
@@ -26,19 +26,6 @@ const Register = () => {
 
   return (
     <div>
-      <section
-        className="page-title-area bg-image ptb--80"
-        data-bg-image={require("../../assets/img/login/login.jpg")}
-      >
-        <div className="container">
-          <div className="row">
-            <div className="col-6 col-md-4"></div>
-            <div className="col-6 col-md-4">
-              <h1 className="page-title">회원가입</h1>
-            </div>
-          </div>
-        </div>
-      </section>
       <div className="main-content-wrapper">
         <div className="page-content-inner pt--75 pb--80">
           <div className="container">
@@ -97,13 +84,8 @@ const Register = () => {
                     <div className="form__group mb--20">
                       <input
                         type="submit"
-                        className="form__input"
+                        className="btn btn-fullwidth"
                         value="회원가입"
-                      />
-                      <input
-                        type="button"
-                        className="form__input"
-                        value="회원가입취소"
                       />
                     </div>
                   </form>
@@ -117,4 +99,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default SignUp;

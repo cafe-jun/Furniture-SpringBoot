@@ -4,7 +4,7 @@ import "./assets/css/main.css";
 import Footer from "./component/Footer";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import Register from "./component/Auth/Register";
+import SignUp from "./component/Auth/SignUp";
 import Main from "./component/Main";
 import OAuth2RedirectHandler from "./common/config/oauth2/OAuth2RedirectHandler";
 import SearchPws from "./component/Auth/SearchPws";
@@ -20,7 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/signin" element={<SignIn />} />
-          <Route path="/signup" element={<Register />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route path="/search_password" element={<SearchPws />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/edit_password" element={<EditPwd />} />

@@ -58,10 +58,7 @@ const SignIn = () => {
               <div className="col-md-4"></div>
               <div className="col-md-4">
                 <div className="login-box">
-                  <h3
-                    className="heading__terriary mb--30"
-                    // style="text-align: center"
-                  >
+                  <h3 className="heading__terriary mb--30">
                     로그인
                     <form
                       className="form form--login"
@@ -80,7 +77,6 @@ const SignIn = () => {
                           name="email"
                           value={email}
                           onChange={onChangeEmail}
-                          //   style="size: 50px"
                         />
                       </div>
                       <div className="form__group mb--20">
@@ -101,7 +97,7 @@ const SignIn = () => {
                           <input
                             type="submit"
                             value="로그인"
-                            className="btn btn-size-sm"
+                            className="btn btn-fullwidth"
                           />
                         </div>
                       </div>
@@ -119,7 +115,7 @@ const SignIn = () => {
                         </label>
                         <br />
                       </div>
-                      <a className="forgot-pass" href="/register">
+                      <a className="forgot-pass" href="/signup">
                         <b>&nbsp;&nbsp;회원가입&nbsp;&nbsp;</b>
                       </a>
                       <a className="forgot-pass" href="/">

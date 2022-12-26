@@ -15,7 +15,7 @@ export const SignInApi = async (data) => {
     .then((response) => response.data);
 };
 
-export const SignUp = async (data) => {
+export const SignUpApi = async (data) => {
   return apiWithoutInterceptor.post("auth/signup", {
     email: data.email,
     password: data.password,
@@ -27,5 +27,11 @@ export const Profile = async (data) => {
   return apiWithoutInterceptor.post("member/profile", {
     email: data.email,
     name: data.name,
+  });
+};
+export const editPwdApi = async (data) => {
+  return apiWithoutInterceptor.post("member/editPassword", {
+    newPassword: data.newPassword,
+    checkPassword: data.checkPassword,
   });
 };
