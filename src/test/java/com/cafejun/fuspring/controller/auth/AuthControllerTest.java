@@ -1,4 +1,4 @@
-package com.cafejun.fuspring.auth;
+package com.cafejun.fuspring.controller.auth;
 
 import com.cafejun.fuspring.lib.JsonUtils;
 import com.cafejun.fuspring.payload.request.auth.SignInRequest;

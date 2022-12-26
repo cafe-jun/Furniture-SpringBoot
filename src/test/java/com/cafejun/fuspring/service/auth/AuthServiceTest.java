@@ -1,4 +1,4 @@
-package com.cafejun.fuspring.auth;
+package com.cafejun.fuspring.service.auth;
 
 import com.cafejun.fuspring.domain.entity.member.Member;
 import com.cafejun.fuspring.payload.request.auth.SignInRequest;
@@ -71,6 +71,12 @@ class AuthServiceTest {
         Optional<Member> member = memberRepository.findByEmail(signInRequest.getEmail());
         assertThat(member.get().getEmail()).isEqualTo(signInRequest.getEmail());
         assertThat(member.get().getName()).isEqualTo(signUpRequest.getName());
+
+    }
+
+    @Test
+    @DisplayName("AuthService siginout 성공테스트")
+    public void signout() {
 
     }
 }

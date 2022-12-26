@@ -99,7 +99,7 @@ public class CustomTokenProviderService {
 
     public boolean validateToken(String token) {
         try {
-            log.info("bearerToken = {} \n oAuth2Config.getAuth()={}", token, oAuth2Config.getAuth().getTokenSecret());
+            log.info("bearerToken = {}  oAuth2Config.getAuth()={}", token, oAuth2Config.getAuth().getTokenSecret());
             Jwts.parserBuilder().setSigningKey(getKey()).build().parseClaimsJws(token);
             return true;
         } catch (io.jsonwebtoken.security.SecurityException ex) {
