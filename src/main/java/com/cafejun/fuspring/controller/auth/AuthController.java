@@ -28,7 +28,7 @@ public class AuthController {
     ) {
         return authService.signin(signInRequest);
     }
-    @PostMapping(value = "signup")
+    @PostMapping(value = "/signup")
     public ResponseEntity<?> signup(
             @Valid @RequestBody SignUpRequest signUpRequest
     ) {

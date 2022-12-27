@@ -3,16 +3,21 @@ import useInput from "../../hook/useInput";
 import { SignUpApi } from "../../common/api";
 import { useMutation } from "react-query";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const [email, onChangeEmail, setEmail] = useInput("");
   const [password, onChangePassword, setPassword] = useInput("");
   const [name, onChangeName, setName] = useInput("");
+  const navigate = useNavigate();
+
   const { register, handleSubmit, errors } = useForm({
     mode: "onChange",
   });
   const { mutate, isLoading } = useMutation(SignUpApi, {
-    onSuccess: (data) => {},
+    onSuccess: (data) => {
+      navigate("/signin");
+    },
     onError: () => {
       alert("there was an error");
     },

@@ -15,6 +15,7 @@ import com.cafejun.fuspring.payload.response.Message;
 import com.cafejun.fuspring.repository.auth.TokenRepository;
 import com.cafejun.fuspring.repository.member.MemberRepository;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -29,7 +30,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.Optional;
-
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class AuthService {
@@ -41,12 +42,14 @@ public class AuthService {
     private final TokenRepository tokenRepository;
 
     public ResponseEntity<?> signin(SignInRequest signInRequest){
+        log.debug("authentication,{}",signInRequest);
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         signInRequest.getEmail(),
                         signInRequest.getPassword()
                 )
         );
+        log.debug("authentication,{}",authentication);
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         TokenMapping tokenMapping = customTokenProviderService.createToken(authentication);

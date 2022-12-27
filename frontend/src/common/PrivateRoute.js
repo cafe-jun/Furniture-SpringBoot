@@ -1,16 +1,18 @@
 import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import { Route, Redirect, Navigate } from "react-router-dom";
+import { getCookie } from "./cookie";
 
 const PrivateRoute = ({ component: Component, authenticated, ...rest }) => (
   <Route
     {...rest}
     render={(props) =>
-      authenticated ? (
-        <Component {...rest} {...props} />
+      getCookie("access_token") ? (
+        <Component {...props} />
       ) : (
-        <Redirect
+        <Navigate
+          replace
           to={{
-            pathname: "/login",
+            pathname: "/signin",
             state: { from: props.location },
           }}
         />

@@ -6,15 +6,6 @@ import { getCookie, setCookie } from "../../cookie";
 
 const OAuth2RedirectHandler = () => {
   const location = useLocation().search;
-  // const getUrlParameter = (name, location) => {
-  //   name = name.replace(/[\\[]/, "\\[").replace(/[\]]/, "\\]");
-  //   const regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
-  //   const results = regex.exec();
-  //   return results === null
-  //     ? ""
-  //     : decodeURIComponent(results[1].replace(/\+/g, " "));
-  // };
-  console.log(getCookie(ACCESS_TOKEN));
   useEffect(() => {
     const { token } = queryString.parse(location);
     if (token) {
@@ -25,7 +16,7 @@ const OAuth2RedirectHandler = () => {
   return getCookie(ACCESS_TOKEN) ? (
     <Navigate replace to="/" />
   ) : (
-    <Navigate replace to="/login" />
+    <Navigate replace to="/signin" />
   );
 };
 
