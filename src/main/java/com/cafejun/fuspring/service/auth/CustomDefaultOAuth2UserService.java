@@ -42,7 +42,6 @@ public class CustomDefaultOAuth2UserService extends DefaultOAuth2UserService {
             member = memberOptional.get();
             DefaultAssert.isAuthentication(member.getProvider().equals(Provider.valueOf(oAuth2UserRequest.getClientRegistration().getRegistrationId())));
             member = updateExistingMember(member, oAuth2UserInfo);
-
         } else {
             member = registerNewUser(oAuth2UserRequest, oAuth2UserInfo);
         }

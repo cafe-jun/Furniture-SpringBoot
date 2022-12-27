@@ -6,7 +6,7 @@ import com.cafejun.fuspring.domain.entity.member.Member;
 import com.cafejun.fuspring.payload.request.auth.ChangePasswordRequest;
 import com.cafejun.fuspring.payload.response.ApiResponse;
 import com.cafejun.fuspring.repository.member.MemberRepository;
-import lombok.Builder;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -41,6 +41,4 @@ public class MemberService {
         ApiResponse apiResponse = ApiResponse.builder().check(true).information(member.get()).build();
         return ResponseEntity.ok(apiResponse);
     }
-
-
 }

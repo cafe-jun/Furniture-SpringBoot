@@ -20,7 +20,6 @@ const SignIn = () => {
   const [email, onChangeEmail, setEmail] = useInput("");
   const [password, onChangePassword, setPassword] = useInput("");
   const navigate = useNavigate();
-  const { state } = useLocation();
   const { register, handleSubmit, errors } = useForm({
     mode: "onChange",
   });
@@ -62,7 +61,6 @@ const SignIn = () => {
                     로그인
                     <form
                       className="form form--login"
-                      action="/login_ok.fu"
                       method="post"
                       onSubmit={handleSubmit(onSubmit)}
                     >
