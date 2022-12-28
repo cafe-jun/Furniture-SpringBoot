@@ -1,5 +1,5 @@
 import React from "react";
-import useInput from "../../../hook/useInput";
+import useInput from "@hook/useInput";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { editPassword } from "@api/member/member";

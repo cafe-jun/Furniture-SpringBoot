@@ -7,7 +7,7 @@ import SignIn from "@components/member/signin/SignIn";
 import SignUp from "@components/member/signup/SignUp";
 import { ComponentRouter } from "@payload/route/route";
 
-export const privateRoutes: ComponentRouter[] = [
+export const privateComponentRouters: ComponentRouter[] = [
   {
     path: "/profile",
     component: Profile,
@@ -22,7 +22,7 @@ export const privateRoutes: ComponentRouter[] = [
   },
 ];
 
-export const publicRoutes: ComponentRouter[] = [
+export const publicComponentRouters: ComponentRouter[] = [
   {
     path: "/",
     component: Main,
