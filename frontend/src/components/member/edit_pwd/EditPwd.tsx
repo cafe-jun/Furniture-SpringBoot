@@ -1,26 +1,26 @@
 import React from "react";
-import useInput from "../../hook/useInput";
+import useInput from "../../../hook/useInput";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
-import { editPwdApi } from "../../common/api";
+import { editPassword } from "@api/member/member";
 
 const EditPwd = () => {
   const [newPassword, onChangeNewPassword, SetNewPassword] = useInput("");
   const [checkPassword, onChangeCheckPassword, setCheckPassword] = useInput("");
 
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit } = useForm({
     mode: "onChange",
   });
-  const { mutate, isLoading } = useMutation(editPwdApi, {
+  const { mutate, isLoading } = useMutation(editPassword, {
     onSuccess: (data) => {},
     onError: () => {
-      alert("there was an error");
+      alert("에러 발생");
     },
     onSettled: () => {
       // queryClient.invalidateQueries("create");
     },
   });
-  const onSubmit = (data) => {
+  const onSubmit = (data: any) => {
     mutate({ newPassword, checkPassword });
   };
 
@@ -35,7 +35,6 @@ const EditPwd = () => {
                 <div className="login-box">
                   <form
                     className="form form--login"
-                    action="/login_ok.fu"
                     method="post"
                     onSubmit={handleSubmit(onSubmit)}
                   >

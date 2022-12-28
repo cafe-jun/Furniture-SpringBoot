@@ -1,9 +1,10 @@
 import React from "react";
-import useInput from "../../hook/useInput";
-import { SignUpApi } from "../../common/api";
+import useInput from "@hook/useInput";
 import { useMutation } from "react-query";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { localSignUp } from "@api/auth/auth";
+import { SignUpPayload } from "@payload/auth/auth";
 
 const SignUp = () => {
   const [email, onChangeEmail, setEmail] = useInput("");
@@ -11,21 +12,21 @@ const SignUp = () => {
   const [name, onChangeName, setName] = useInput("");
   const navigate = useNavigate();
 
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit } = useForm({
     mode: "onChange",
   });
-  const { mutate, isLoading } = useMutation(SignUpApi, {
+  const { mutate, isLoading } = useMutation(localSignUp, {
     onSuccess: (data) => {
       navigate("/signin");
     },
     onError: () => {
-      alert("there was an error");
+      alert("에러가 발생했습니다.");
     },
     onSettled: () => {
       // queryClient.invalidateQueries("create");
     },
   });
-  const onSubmit = (data) => {
+  const onSubmit = (data: any) => {
     mutate({ email, password, name });
   };
 

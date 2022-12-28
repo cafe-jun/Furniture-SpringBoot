@@ -1,30 +1,29 @@
+import "./SignIn.css";
 import React, { useEffect } from "react";
 import { useMutation } from "react-query";
-import useInput from "../../hook/useInput";
-import { SignInApi, authLogin } from "../../common/api";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import useInput from "@hook/useInput";
+import { localSignIn } from "@api/auth/auth";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { getCookie } from "../../common/cookie";
+import { getCookie } from "@common/cookie";
 import {
   ACCESS_TOKEN,
   GOOGLE_AUTH_URL,
   KAKAO_AUTH_URL,
   NAVER_AUTH_URL,
-} from "../../common/constrant";
-import googleLogo from "../../common/img/social/google-logo.png";
-import kakaoLogo from "../../common/img/social/kakao-logo.png";
-import naverLogo from "../../common/img/social/naver-logo.png";
-import "./SignIn.css";
+} from "@common/constrant";
+import { GoogleLogo, NaverLogo, KakaoLogo } from "./socialLogo";
+import { SignInPayload } from "@payload/auth/auth";
 
 const SignIn = () => {
   const [email, onChangeEmail, setEmail] = useInput("");
   const [password, onChangePassword, setPassword] = useInput("");
   const navigate = useNavigate();
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit } = useForm({
     mode: "onChange",
   });
 
-  const { mutate, isLoading } = useMutation(SignInApi, {
+  const { mutate, isLoading } = useMutation(localSignIn, {
     onSuccess: (data) => {
       console.log("로그인 성공 처리");
     },
@@ -35,7 +34,7 @@ const SignIn = () => {
       // queryClient.invalidateQueries("create");
     },
   });
-  const onSubmit = (data) => {
+  const onSubmit = (data: any) => {
     mutate({ email, password });
   };
 
@@ -127,20 +126,20 @@ const SignIn = () => {
                       className="btn btn-block social-btn google"
                       href={GOOGLE_AUTH_URL}
                     >
-                      <img src={googleLogo} alt="Google" />
+                      <img src={GoogleLogo} alt="Google" />
                     </a>
 
                     <a
                       className="btn btn-block social-btn kakao"
                       href={KAKAO_AUTH_URL}
                     >
-                      <img src={kakaoLogo} alt="Kakao" />
+                      <img src={KakaoLogo} alt="Kakao" />
                     </a>
                     <a
                       className="btn btn-block social-btn naver"
                       href={NAVER_AUTH_URL}
                     >
-                      <img src={naverLogo} alt="Naver" />
+                      <img src={NaverLogo} alt="Naver" />
                     </a>
                   </div>
                 </div>

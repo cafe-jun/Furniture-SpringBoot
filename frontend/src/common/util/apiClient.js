@@ -1,5 +1,5 @@
 import axios, { CancelToken } from "axios";
-import define from "../config/envSetting";
+import define from "../config/env/envSetting";
 import { getCookie } from "../cookie";
 
 export const apiWithoutInterceptor = axios.create({
