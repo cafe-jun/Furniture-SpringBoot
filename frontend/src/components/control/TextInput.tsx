@@ -19,7 +19,7 @@ const TextInput = (props: any) => {
     name,
     error = null,
     value,
-    size = "medium",
+    size = "large",
     placeholder,
     fullWidth,
     onChange,

@@ -6,4 +6,4 @@ export * from "./member/profile/Profile";
 export * from "./member/search_pwd/SearchPwd";
 export * from "./member/signin/SignIn";
 export * from "./member/signup/SignUp";
-export * from "./route";
+export * from "./route/componentRouter";
