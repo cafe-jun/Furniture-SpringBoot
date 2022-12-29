@@ -5,15 +5,16 @@ import useInput from "@hook/useInput";
 import { localSignIn } from "@api/auth/auth";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { getCookie } from "@common/cookie";
+import { getCookie } from "@common/util/cookie";
 import {
   ACCESS_TOKEN,
   GOOGLE_AUTH_URL,
   KAKAO_AUTH_URL,
   NAVER_AUTH_URL,
-} from "@common/constrant";
+} from "@components/member/oauth2/oAuth2RedrectUrl";
 import { GoogleLogo, NaverLogo, KakaoLogo } from "./socialLogo";
 import { SignInPayload } from "@payload/auth/auth";
+import TextInput from "@components/control/TextInput";
 
 const SignIn = () => {
   const [email, onChangeEmail, setEmail] = useInput("");
@@ -64,27 +65,17 @@ const SignIn = () => {
                       onSubmit={handleSubmit(onSubmit)}
                     >
                       <div className="form__group mb--20">
-                        <label className="form__label" htmlFor="username_email">
-                          <b>이메일주소</b>
-                        </label>
-                        <input
-                          type="text"
-                          className="form__input"
-                          id="username_email"
+                        <TextInput
+                          label="이메일"
                           name="email"
                           value={email}
                           onChange={onChangeEmail}
                         />
                       </div>
                       <div className="form__group mb--20">
-                        <label className="form__label" htmlFor="login_password">
-                          <b>패스워드</b>
-                        </label>
-                        <input
-                          type="password"
-                          className="form__input"
-                          id="login_password"
-                          name="pwd"
+                        <TextInput
+                          label="패스워드"
+                          name="password"
                           value={password}
                           onChange={onChangePassword}
                         />

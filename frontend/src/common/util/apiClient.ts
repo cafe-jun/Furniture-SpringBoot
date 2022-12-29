@@ -1,19 +1,19 @@
 import axios, { CancelToken } from "axios";
-import define from "../config/env/envSetting";
-import { getCookie } from "../cookie";
+import { API_BASE_URL } from "../config/env/envSetting";
+import { getCookie } from "./cookie";
 
 export const apiWithoutInterceptor = axios.create({
-  baseURL: define.API_BASE_URL,
+  baseURL: API_BASE_URL,
   // client 와 server 가 쿠키 값을 공유하기위해 withCredentials = true 값을 사용
   withCredentials: true,
 });
 
 export const apiClient = axios.create({
-  baseURL: define.API_BASE_URL,
+  baseURL: API_BASE_URL,
 });
 
 export const networkService = {
-  setupInterceptors: (handleDirectToIntroPage) => {
+  setupInterceptors: (handleDirectToIntroPage: any) => {
     apiClient.interceptors.request.use(
       (config) => {
         config.headers = {
