@@ -18,20 +18,8 @@ import { useMutation } from "react-query";
 import { localSignIn } from "@api/auth/auth";
 import { getCookie } from "@common/util/cookie";
 import MuiButton from "@components/control/Button";
-import {
-  GOOGLE_AUTH_URL,
-  KAKAO_AUTH_URL,
-  NAVER_AUTH_URL,
-} from "@components/member/oauth2/oAuth2RedrectUrl";
-import {
-  GoogleLoginButton,
-  KakaoLoginButton,
-  LocalAuthButton,
-  NaverLoginButton,
-} from "./mui-styled";
-import { KakaoLogo } from "./KakaoLogo";
-import { NaverLogo } from "./NaverLogo";
-import { GoogleLogo } from "./GoogleLogo";
+import { InputLabel } from "@mui/material";
+import { AuthInputLabel } from "./mui-styled";
 
 const useStyles = makeStyles({
   signInForm: {
@@ -41,7 +29,7 @@ const useStyles = makeStyles({
     flexGrow: 1,
   },
   logoContainer: {
-    width: "300px",
+    width: "400px",
     height: "185px",
   },
   signInButton: {
@@ -51,9 +39,13 @@ const useStyles = makeStyles({
   signInBtnContainer: {
     marginTop: "2%",
   },
+  label: {
+    display: "flex",
+    marginTop: "15px",
+  },
 });
 
-const SignIn = () => {
+const SignUp = () => {
   const classes = useStyles();
   const navigate = useNavigate();
 
@@ -93,28 +85,51 @@ const SignIn = () => {
               <SignInLogo>
                 <SignInImg />
               </SignInLogo>
-
               <AuthContent>
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <Grid container className={classes.signInForm} spacing={2}>
                     <Grid item xs={9}>
+                      <AuthInputLabel>이메일</AuthInputLabel>
                       <TextInput
                         id="outlined-basic"
                         name="email"
                         variant="outlined"
-                        placeholder="이메일을 입력해주세요"
+                        placeholder="이메일"
                         size="large"
                         fullWidth
                       />
                     </Grid>
                     <Grid item xs={9}>
+                      <AuthInputLabel>이름</AuthInputLabel>
                       <TextInput
                         id="outlined-basic"
-                        name="email"
+                        name="name"
                         variant="outlined"
-                        placeholder=" 입력해주세요"
+                        placeholder="이름"
                         size="large"
                         fullWidth
+                      />
+                    </Grid>
+                    <Grid item xs={9}>
+                      <AuthInputLabel>패스워드</AuthInputLabel>
+                      <TextInput
+                        type="password"
+                        id="outlined-basic"
+                        name="password"
+                        variant="outlined"
+                        placeholder="패스워드"
+                        size="large"
+                      />
+                    </Grid>
+                    <Grid item xs={9}>
+                      <AuthInputLabel>패스워드 확인</AuthInputLabel>
+                      <TextInput
+                        type="password"
+                        id="outlined-basic"
+                        name="password"
+                        variant="outlined"
+                        placeholder="패스워드확인"
+                        size="large"
                       />
                     </Grid>
                   </Grid>
@@ -124,55 +139,12 @@ const SignIn = () => {
                   <div className={classes.signInBtnContainer}>
                     <MuiButton
                       type="submit"
-                      text="로그인"
+                      text="회원가입"
                       color="primary"
                       className={classes.signInButton}
                     />
                   </div>
                 </form>
-                <div className={classes.signInBtnContainer}>
-                  <Grid container className={classes.signInForm} spacing={2}>
-                    <Grid item xs={9}>
-                      <LocalAuthButton variant="text" href="/auth/sign_up">
-                        아이디찾기
-                      </LocalAuthButton>
-                      <LocalAuthButton variant="text">
-                        비밀번호찾기
-                      </LocalAuthButton>
-                      <LocalAuthButton variant="text" href="/auth/sign_up">
-                        회원가입
-                      </LocalAuthButton>
-                    </Grid>
-                  </Grid>
-                </div>
-                <div className={classes.signInBtnContainer}>
-                  <Grid container className={classes.signInForm} spacing={2}>
-                    <Grid item xs={9}>
-                      <KakaoLoginButton
-                        startIcon={<KakaoLogo />}
-                        href={KAKAO_AUTH_URL}
-                      >
-                        카카오로 로그인
-                      </KakaoLoginButton>
-                    </Grid>
-                    <Grid item xs={9}>
-                      <NaverLoginButton
-                        startIcon={<NaverLogo />}
-                        href={NAVER_AUTH_URL}
-                      >
-                        네이버로 로그인
-                      </NaverLoginButton>
-                    </Grid>
-                    <Grid item xs={9}>
-                      <GoogleLoginButton
-                        startIcon={<GoogleLogo />}
-                        href={GOOGLE_AUTH_URL}
-                      >
-                        구글로 로그인
-                      </GoogleLoginButton>
-                    </Grid>
-                  </Grid>
-                </div>
               </AuthContent>
             </AuthHeader>
           </AuthBox>
@@ -182,4 +154,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;

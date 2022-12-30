@@ -13,7 +13,7 @@ import {
   KAKAO_AUTH_URL,
   NAVER_AUTH_URL,
 } from "@components/member/oauth2/oAuth2RedrectUrl";
-import { GoogleLogo, NaverLogo, KakaoLogo } from "./socialLogo";
+
 import { SignInPayload } from "@payload/auth/auth";
 import TextInput from "@components/control/TextInput";
 import MuiButton from "@components/control/Button";
@@ -110,7 +110,8 @@ const SignIn = () => {
 
           <br />
           <div className="social-login">
-            <a
+            <button></button>
+            {/* <a
               className="btn btn-block social-btn google"
               href={GOOGLE_AUTH_URL}
             >
@@ -122,7 +123,7 @@ const SignIn = () => {
             </a>
             <a className="btn btn-block social-btn naver" href={NAVER_AUTH_URL}>
               <img src={NaverLogo} alt="Naver" />
-            </a>
+            </a> */}
           </div>
         </div>
       </Box>

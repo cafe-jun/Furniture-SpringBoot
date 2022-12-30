@@ -4,8 +4,8 @@ import OAuth2RedirectHandler from "@components/member/oauth2/oAuth2RedirectHandl
 import Profile from "@components/member/profile/Profile";
 import SearchPws from "@components/member/search_pwd/SearchPwd";
 
-import SignUp from "@components/member/signup/SignUp";
 import SignIn from "@pages/Auth/SignIn";
+import SignUp from "@pages/Auth/SignUp";
 import { ComponentRouter } from "@payload/route/route";
 
 export const privateComponentRouters: ComponentRouter[] = [
@@ -21,11 +21,11 @@ export const privateComponentRouters: ComponentRouter[] = [
 
 export const authComponentRouters: ComponentRouter[] = [
   {
-    path: "/signup",
+    path: "/auth/sign_up",
     component: SignUp,
   },
   {
-    path: "/signin",
+    path: "/auth/sign_in",
     component: SignIn,
   },
   {
