@@ -63,6 +63,7 @@ public class AuthService {
     }
 
     public ResponseEntity<?> signup(SignUpRequest signUpRequest) {
+        DefaultAssert.isEqualString(signUpRequest.getPassword(), signUpRequest.getPassword_confirmation());
         boolean check = memberRepository.existsByEmail(signUpRequest.getEmail());
         System.out.println("AuthService.signup : "+check);
         DefaultAssert.isTrue(!memberRepository.existsByEmail(signUpRequest.getEmail()),"해당 이메일이 이미 존재합니다.");

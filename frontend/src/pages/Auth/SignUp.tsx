@@ -15,11 +15,13 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
-import { localSignIn } from "@api/auth/auth";
+import { localSignIn, localSignUp } from "@api/auth/auth";
 import { getCookie } from "@common/util/cookie";
 import MuiButton from "@components/control/Button";
 import { InputLabel } from "@mui/material";
 import { AuthInputLabel } from "./mui-styled";
+import MuiCheckBox from "@components/control/MuiCheckBox";
+import useInput from "@hook/useInput";
 
 const useStyles = makeStyles({
   signInForm: {
@@ -48,14 +50,18 @@ const useStyles = makeStyles({
 const SignUp = () => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const [email, onChangeEmail, setEmail] = useInput("");
+  const [name, onChangeName, setName] = useInput("");
+  const [password, onChangePassword, setPassword] = useInput("");
+  const [passwordCheck, onChangePasswordCheck, setPasswordCheck] = useInput("");
 
   const { register, handleSubmit } = useForm({
     mode: "onChange",
   });
 
-  const { mutate, isLoading } = useMutation(localSignIn, {
+  const { mutate, isLoading } = useMutation(localSignUp, {
     onSuccess: (data) => {
-      console.log("로그인 성공 처리");
+      console.log("회원가입 성공 처리");
     },
     onError: () => {
       alert("there was an error");
@@ -66,15 +72,8 @@ const SignUp = () => {
   });
   const onSubmit = (data: any) => {
     console.log(data);
-    // mutate({ email, password });
+    mutate({ email, name, password });
   };
-
-  useEffect(() => {
-    // access token
-    if (getCookie("access_token")) {
-      navigate("/");
-    }
-  }, []);
 
   return (
     <div>
@@ -97,6 +96,8 @@ const SignUp = () => {
                         placeholder="이메일"
                         size="large"
                         fullWidth
+                        value={email}
+                        onChange={onChangeEmail}
                       />
                     </Grid>
                     <Grid item xs={9}>
@@ -108,6 +109,8 @@ const SignUp = () => {
                         placeholder="이름"
                         size="large"
                         fullWidth
+                        value={name}
+                        onChange={onChangeName}
                       />
                     </Grid>
                     <Grid item xs={9}>
@@ -119,6 +122,8 @@ const SignUp = () => {
                         variant="outlined"
                         placeholder="패스워드"
                         size="large"
+                        value={password}
+                        onChange={onChangePassword}
                       />
                     </Grid>
                     <Grid item xs={9}>
@@ -130,6 +135,8 @@ const SignUp = () => {
                         variant="outlined"
                         placeholder="패스워드확인"
                         size="large"
+                        value={passwordCheck}
+                        onChange={onChangePasswordCheck}
                       />
                     </Grid>
                   </Grid>

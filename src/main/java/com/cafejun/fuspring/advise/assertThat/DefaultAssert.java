@@ -24,6 +24,11 @@ public class DefaultAssert extends Assert {
         }
     }
 
+    public static void isEqualString(String str1,String str2) {
+        if(!str1.equals(str2)) {
+            throw new DefaultException(ErrorCode.INVALID_PASSWORD_CONFIRMATION);
+        }
+    }
     public static void isValidParameter(Errors errors){
         if(errors.hasErrors()){
             throw new InvalidParameterException(errors);
