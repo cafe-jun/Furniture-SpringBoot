@@ -24,13 +24,13 @@ public class AuthController {
 
     @PostMapping(value = "/signin")
     public ResponseEntity<?> signin(
-            @Valid @RequestBody SignInRequest signInRequest
+            @RequestBody SignInRequest signInRequest
     ) {
         return authService.signin(signInRequest);
     }
     @PostMapping(value = "/signup")
     public ResponseEntity<?> signup(
-            @Valid @RequestBody SignUpRequest signUpRequest
+            @RequestBody SignUpRequest signUpRequest
     ) {
         return authService.signup(signUpRequest);
     }

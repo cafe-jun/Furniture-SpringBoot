@@ -1,4 +1,3 @@
-import Main from "@components/main";
 import EditPwd from "@components/member/edit_pwd/EditPwd";
 import OAuth2RedirectHandler from "@components/member/oauth2/oAuth2RedirectHandler";
 import Profile from "@components/member/profile/Profile";
@@ -6,6 +5,7 @@ import SearchPws from "@components/member/search_pwd/SearchPwd";
 
 import SignIn from "@pages/Auth/SignIn";
 import SignUp from "@pages/Auth/SignUp";
+import Main from "@pages/Main/Main";
 import { ComponentRouter } from "@payload/route/route";
 
 export const privateComponentRouters: ComponentRouter[] = [

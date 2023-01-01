@@ -1,8 +1,7 @@
 import TextInput from "@components/control/TextInput";
-import { PasswordOutlined, PersonPinCircleOutlined } from "@mui/icons-material";
 import { Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { useEffect, useState } from "react";
+
 import {
   AuthBody,
   AuthBox,
@@ -32,6 +31,7 @@ import {
 import { KakaoLogo } from "./KakaoLogo";
 import { NaverLogo } from "./NaverLogo";
 import { GoogleLogo } from "./GoogleLogo";
+import useInput from "@hook/useInput";
 
 const useStyles = makeStyles({
   signInForm: {
@@ -56,7 +56,8 @@ const useStyles = makeStyles({
 const SignIn = () => {
   const classes = useStyles();
   const navigate = useNavigate();
-
+  const [email, onChangeEmail, setEmail] = useInput("");
+  const [password, onChangePassword, setPassword] = useInput("");
   const { register, handleSubmit } = useForm({
     mode: "onChange",
   });
@@ -64,6 +65,7 @@ const SignIn = () => {
   const { mutate, isLoading } = useMutation(localSignIn, {
     onSuccess: (data) => {
       console.log("로그인 성공 처리");
+      navigate("/");
     },
     onError: () => {
       alert("there was an error");
@@ -73,16 +75,8 @@ const SignIn = () => {
     },
   });
   const onSubmit = (data: any) => {
-    console.log(data);
-    // mutate({ email, password });
+    mutate({ email, password });
   };
-
-  useEffect(() => {
-    // access token
-    if (getCookie("access_token")) {
-      navigate("/");
-    }
-  }, []);
 
   return (
     <div>
@@ -99,22 +93,22 @@ const SignIn = () => {
                   <Grid container className={classes.signInForm} spacing={2}>
                     <Grid item xs={9}>
                       <TextInput
-                        id="outlined-basic"
                         name="email"
                         variant="outlined"
                         placeholder="이메일을 입력해주세요"
                         size="large"
                         fullWidth
+                        onChange={onChangeEmail}
                       />
                     </Grid>
                     <Grid item xs={9}>
                       <TextInput
-                        id="outlined-basic"
                         name="email"
                         variant="outlined"
                         placeholder=" 입력해주세요"
                         size="large"
                         fullWidth
+                        onChange={onChangePassword}
                       />
                     </Grid>
                   </Grid>

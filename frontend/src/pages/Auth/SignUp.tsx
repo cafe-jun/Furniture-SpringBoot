@@ -1,8 +1,6 @@
 import TextInput from "@components/control/TextInput";
-import { PasswordOutlined, PersonPinCircleOutlined } from "@mui/icons-material";
 import { Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { useEffect, useState } from "react";
 import {
   AuthBody,
   AuthBox,
@@ -15,13 +13,10 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
-import { localSignIn, localSignUp } from "@api/auth/auth";
-import { getCookie } from "@common/util/cookie";
 import MuiButton from "@components/control/Button";
-import { InputLabel } from "@mui/material";
 import { AuthInputLabel } from "./mui-styled";
-import MuiCheckBox from "@components/control/MuiCheckBox";
 import useInput from "@hook/useInput";
+import { localSignUp } from "@api/auth/auth";
 
 const useStyles = makeStyles({
   signInForm: {
@@ -53,7 +48,11 @@ const SignUp = () => {
   const [email, onChangeEmail, setEmail] = useInput("");
   const [name, onChangeName, setName] = useInput("");
   const [password, onChangePassword, setPassword] = useInput("");
-  const [passwordCheck, onChangePasswordCheck, setPasswordCheck] = useInput("");
+  const [
+    passwordConfirmation,
+    onChangePasswordConfirmation,
+    setPasswordConfirmation,
+  ] = useInput("");
 
   const { register, handleSubmit } = useForm({
     mode: "onChange",
@@ -61,7 +60,7 @@ const SignUp = () => {
 
   const { mutate, isLoading } = useMutation(localSignUp, {
     onSuccess: (data) => {
-      console.log("회원가입 성공 처리");
+      navigate("/auth/sign_in");
     },
     onError: () => {
       alert("there was an error");
@@ -71,8 +70,7 @@ const SignUp = () => {
     },
   });
   const onSubmit = (data: any) => {
-    console.log(data);
-    mutate({ email, name, password });
+    mutate({ email, name, password, passwordConfirmation });
   };
 
   return (
@@ -90,7 +88,6 @@ const SignUp = () => {
                     <Grid item xs={9}>
                       <AuthInputLabel>이메일</AuthInputLabel>
                       <TextInput
-                        id="outlined-basic"
                         name="email"
                         variant="outlined"
                         placeholder="이메일"
@@ -103,7 +100,6 @@ const SignUp = () => {
                     <Grid item xs={9}>
                       <AuthInputLabel>이름</AuthInputLabel>
                       <TextInput
-                        id="outlined-basic"
                         name="name"
                         variant="outlined"
                         placeholder="이름"
@@ -117,7 +113,6 @@ const SignUp = () => {
                       <AuthInputLabel>패스워드</AuthInputLabel>
                       <TextInput
                         type="password"
-                        id="outlined-basic"
                         name="password"
                         variant="outlined"
                         placeholder="패스워드"
@@ -130,13 +125,12 @@ const SignUp = () => {
                       <AuthInputLabel>패스워드 확인</AuthInputLabel>
                       <TextInput
                         type="password"
-                        id="outlined-basic"
                         name="password"
                         variant="outlined"
                         placeholder="패스워드확인"
                         size="large"
-                        value={passwordCheck}
-                        onChange={onChangePasswordCheck}
+                        value={passwordConfirmation}
+                        onChange={onChangePasswordConfirmation}
                       />
                     </Grid>
                   </Grid>

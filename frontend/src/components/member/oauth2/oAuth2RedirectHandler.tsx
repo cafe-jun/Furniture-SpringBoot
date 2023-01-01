@@ -6,12 +6,12 @@ import { getCookie, setCookie } from "../../../common/util/cookie";
 
 const OAuth2RedirectHandler = () => {
   const location = useLocation().search;
-  // useEffect(() => {
-  //   const { token } = queryString.parse(location);
-  //   if (token) {
-  //     setCookie(ACCESS_TOKEN, token, { path: "/" });
-  //   }
-  // }, []);
+  useEffect(() => {
+    const { token } = queryString.parse(location);
+    if (token) {
+      setCookie(ACCESS_TOKEN, token as string, { path: "/" });
+    }
+  }, []);
 
   return getCookie(ACCESS_TOKEN) ? (
     <Navigate replace to="/" />
