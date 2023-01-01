@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-package com.cafejun.fuspring.config;public class WebMvcConfig {
-}
-=======
+
 package com.cafejun.fuspring.config;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -26,4 +23,3 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .maxAge(MAX_AGE_SECS);
     }
 }
->>>>>>> main_header

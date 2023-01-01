@@ -8,48 +8,48 @@ export const apiWithoutInterceptor = axios.create({
   withCredentials: true,
 });
 
-export const apiClient = axios.create({
-  baseURL: API_BASE_URL,
+const apiClient = axios.create({
+  baseURL: "http://localhost:8080",
 });
 
-export const networkService = {
-  setupInterceptors: (handleDirectToIntroPage: any) => {
-    apiClient.interceptors.request.use(
-      (config) => {
-        config.headers = {
-          Authorization: `Bearer ${getCookie("access_token")}`,
-        };
-        return config;
-      },
-      (error) => {
-        return Promise.reject(error);
-      }
-    );
+apiClient.interceptors.request.use(
+  (config) => {
+    config.headers = {
+      Authorization: `Bearer ${getCookie("accessToken")}`,
+    };
 
-    // // response
-    apiClient.interceptors.response.use(
-      (response) => {
-        /*
-        http status가 200인 경우
-        응답 바로 직전에 대해 작성합니다. 
-        .then() 으로 이어집니다.
-    */
-        return response;
-      },
-
-      (error) => {
-        /*
-        http status가 200이 아닌 경우
-        응답 에러 처리를 작성합니다.
-        .catch() 으로 이어집니다.    
-    */
-        console.log("axios error message :", error.message);
-        console.log("error ::", error.response.data);
-        // const status = error.response.status
-        const { code } = error.response.data;
-        handleDirectToIntroPage();
-        return Promise.reject(error);
-      }
-    );
+    return config;
   },
-};
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+export default apiClient;
+// // response
+//     apiClient.interceptors.response.use(
+//       (response) => {
+//         /*
+//         http status가 200인 경우
+//         응답 바로 직전에 대해 작성합니다.
+//         .then() 으로 이어집니다.
+//     */
+//         return response;
+//       },
+
+//       (error) => {
+//         /*
+//         http status가 200이 아닌 경우
+//         응답 에러 처리를 작성합니다.
+//         .catch() 으로 이어집니다.
+//     */
+//         console.log("axios error message :", error.message);
+//         console.log("error ::", error.response.data);
+//         // const status = error.response.status
+//         const { code } = error.response.data;
+//         handleDirectToIntroPage();
+//         return Promise.reject(error);
+//       }
+//     );
+//   },
+// };

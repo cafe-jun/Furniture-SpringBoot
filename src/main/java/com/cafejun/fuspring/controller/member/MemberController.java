@@ -23,9 +23,10 @@ public class MemberController {
 
     @GetMapping(value = "/profile")
     public ResponseEntity<?> getProfile(
-            @Valid @RequestParam @CurrentMember MemberPrincipal memberPrincipal
+            @CurrentMember MemberPrincipal memberPrincipal
     ) {
         return memberService.profile(memberPrincipal);
     }
+
 
 }

@@ -8,11 +8,13 @@ import com.cafejun.fuspring.payload.response.ApiResponse;
 import com.cafejun.fuspring.repository.member.MemberRepository;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class MemberService {
@@ -36,9 +38,11 @@ public class MemberService {
         return ResponseEntity.ok(true);
     }
     public ResponseEntity<?> profile(MemberPrincipal memberPrincipal) {
+        log.debug("profile member id,{}",memberPrincipal.getId());
         Optional<Member> member = memberRepository.findById(memberPrincipal.getId());
         DefaultAssert.isOptionalPresent(member);
         ApiResponse apiResponse = ApiResponse.builder().check(true).information(member.get()).build();
         return ResponseEntity.ok(apiResponse);
     }
+
 }

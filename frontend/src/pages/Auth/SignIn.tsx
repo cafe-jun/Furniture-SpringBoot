@@ -15,12 +15,14 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { localSignIn } from "@api/auth/auth";
-import { getCookie } from "@common/util/cookie";
+import { getCookie, setCookie } from "@common/util/cookie";
 import MuiButton from "@components/control/Button";
 import {
+  ACCESS_TOKEN,
   GOOGLE_AUTH_URL,
   KAKAO_AUTH_URL,
   NAVER_AUTH_URL,
+  REFRESH_TOKEN,
 } from "@components/member/oauth2/oAuth2RedrectUrl";
 import {
   GoogleLoginButton,
@@ -64,11 +66,12 @@ const SignIn = () => {
 
   const { mutate, isLoading } = useMutation(localSignIn, {
     onSuccess: (data) => {
-      console.log("로그인 성공 처리");
+      setCookie(ACCESS_TOKEN, data.data.accessToken, { path: "/" });
+      setCookie(REFRESH_TOKEN, data.data.refreshToken, { path: "/" });
       navigate("/");
     },
     onError: () => {
-      alert("there was an error");
+      alert("로그인 에러 발생");
     },
     onSettled: () => {
       // queryClient.invalidateQueries("create");

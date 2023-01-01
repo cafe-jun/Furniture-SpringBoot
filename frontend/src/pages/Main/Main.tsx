@@ -6,6 +6,7 @@ import {
   MainHeader,
   MainLogo,
   MainLogoImg,
+  MainMemberProfile,
 } from "./styled";
 import { Box, Button, Grid, InputAdornment, TextField } from "@mui/material";
 import { AuthButton, ContentButton } from "./mui-styed";
@@ -13,12 +14,16 @@ import TextInput from "@components/control/TextInput";
 import { getCookie } from "@common/util/cookie";
 import { ACCESS_TOKEN } from "@components/member/oauth2/oAuth2RedrectUrl";
 import SearchIcon from "@mui/icons-material/Search";
+import { useQuery } from "react-query";
+import { PROFILE_KEY } from "@common/key";
+import { Profile } from "@api/member/member";
 
 const Main = () => {
+  const { data } = useQuery(PROFILE_KEY, Profile);
+
   return (
     <div>
       <MainBody>
-        {/* <Grid container spacing={3}> */}
         <MainHeader>
           <MainLogo>
             <MainLogoImg />
@@ -63,10 +68,15 @@ const Main = () => {
               </AuthButton>
             </MainAuthItem>
           ) : (
-            <div>로그인 완료</div>
+            <MainMemberProfile
+              src={
+                !data?.information.imageUrl
+                  ? require("../../assets/img/others/avatar-large-2.png")
+                  : data.information.imageUrl
+              }
+            />
           )}
         </MainHeader>
-        {/* </Grid> */}
       </MainBody>
     </div>
   );

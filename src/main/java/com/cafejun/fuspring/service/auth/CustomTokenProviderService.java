@@ -78,8 +78,11 @@ public class CustomTokenProviderService {
     }
     public UsernamePasswordAuthenticationToken getAuthenticationById(String token) {
         Long memberId = getMemberIdFromToken(token);
+        log.info("signin member id ,{}",memberId);
         UserDetails userDetails = customUserDetailsService.loadUserById(memberId);
+        log.info("UserDetails,{},{},{}",userDetails.getAuthorities(),userDetails.getPassword(),userDetails.getUsername());
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());
+        log.info("UsernamePasswordAuthenticationToken,{}",authentication.getAuthorities());
         return authentication;
     }
     public UsernamePasswordAuthenticationToken getAuthenticationByEmail(String email) {
@@ -99,7 +102,6 @@ public class CustomTokenProviderService {
 
     public boolean validateToken(String token) {
         try {
-            log.info("bearerToken = {}  oAuth2Config.getAuth()={}", token, oAuth2Config.getAuth().getTokenSecret());
             Jwts.parserBuilder().setSigningKey(getKey()).build().parseClaimsJws(token);
             return true;
         } catch (io.jsonwebtoken.security.SecurityException ex) {

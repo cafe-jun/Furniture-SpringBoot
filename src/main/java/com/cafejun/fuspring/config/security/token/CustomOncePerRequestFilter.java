@@ -28,6 +28,7 @@ public class CustomOncePerRequestFilter extends OncePerRequestFilter {
         if (StringUtils.hasText(jwt) && customTokenProviderService.validateToken(jwt)) {
             UsernamePasswordAuthenticationToken authentication = customTokenProviderService.getAuthenticationById(jwt);
             authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+            log.debug("doFilterInternal,{}",authentication);
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
 
