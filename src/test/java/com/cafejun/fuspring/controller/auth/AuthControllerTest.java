@@ -36,12 +36,15 @@ public class AuthControllerTest {
     @Autowired
     private WebApplicationContext context;
 
+    @Autowired
+    private MemberRepository memberRepository;
 
     @BeforeEach
     public void init(){
         this.mockMvc = MockMvcBuilders.webAppContextSetup(context)
                 .addFilter(new CharacterEncodingFilter("UTF-8", true))
                 .build();
+        memberRepository.deleteAll();
     }
 
     @Test
@@ -74,14 +77,16 @@ public class AuthControllerTest {
         SignUpRequest signUpRequest = new SignUpRequest();
         signUpRequest.setEmail("tb25271@gmail.com");
         signUpRequest.setPassword("12345");
+        signUpRequest.setPassword_confirmation("12345");
         signUpRequest.setName("jsshin");
 
+        log.debug("JsonUtils.asJsonToString(signUpRequest) ,{}",JsonUtils.asJsonToString(signUpRequest));
         ResultActions actions = this.mockMvc.perform(
                 post("/auth/signup")
                         .content(JsonUtils.asJsonToString(signUpRequest))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isOk())
+        ).andExpect(status().isCreated())
                 .andDo(print());
         //then
         JSONObject jsonObject = JsonUtils.asStringToJson(actions.andReturn().getResponse().getContentAsString());

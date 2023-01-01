@@ -15,9 +15,7 @@ ReactDOM.render(
     <CookiesProvider>
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools initialIsOpen={true} />
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+        <App />
       </QueryClientProvider>
     </CookiesProvider>
   </React.StrictMode>,

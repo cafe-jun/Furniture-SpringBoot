@@ -7,32 +7,32 @@ import { localSignUp } from "@api/auth/auth";
 import { SignUpPayload } from "@payload/auth/auth";
 
 const SignUp = () => {
-  const [email, onChangeEmail, setEmail] = useInput("");
-  const [password, onChangePassword, setPassword] = useInput("");
-  const [name, onChangeName, setName] = useInput("");
-  const navigate = useNavigate();
+  // const [email, onChangeEmail, setEmail] = useInput("");
+  // const [password, onChangePassword, setPassword] = useInput("");
+  // const [name, onChangeName, setName] = useInput("");
+  // const navigate = useNavigate();
 
-  const { register, handleSubmit } = useForm({
-    mode: "onChange",
-  });
-  const { mutate, isLoading } = useMutation(localSignUp, {
-    onSuccess: (data) => {
-      navigate("/signin");
-    },
-    onError: () => {
-      alert("에러가 발생했습니다.");
-    },
-    onSettled: () => {
-      // queryClient.invalidateQueries("create");
-    },
-  });
-  const onSubmit = (data: any) => {
-    mutate({ email, password, name });
-  };
+  // const { register, handleSubmit } = useForm({
+  //   mode: "onChange",
+  // });
+  // const { mutate, isLoading } = useMutation(localSignUp, {
+  //   onSuccess: (data) => {
+  //     navigate("/signin");
+  //   },
+  //   onError: () => {
+  //     alert("에러가 발생했습니다.");
+  //   },
+  //   onSettled: () => {
+  //     // queryClient.invalidateQueries("create");
+  //   },
+  // });
+  // const onSubmit = (data: any) => {
+  //   mutate({ email, password, name });
+  // };
 
   return (
     <div>
-      <div className="main-content-wrapper">
+      {/* <div className="main-content-wrapper">
         <div className="page-content-inner pt--75 pb--80">
           <div className="container">
             <div className="row">
@@ -100,7 +100,7 @@ const SignUp = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
