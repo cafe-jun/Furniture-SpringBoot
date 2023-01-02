@@ -20,6 +20,11 @@ export const MainHeader = styled.div`
   justify-content: space-between;
 `;
 
+export const SliderBody = styled.div`
+  margin-left: 300px;
+  margin-right: 300px;
+`;
+
 export const MainLogo = styled.div``;
 
 export const MainContentItem = styled.div`

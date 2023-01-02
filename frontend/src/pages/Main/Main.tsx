@@ -7,6 +7,7 @@ import {
   MainLogo,
   MainLogoImg,
   MainMemberProfile,
+  SliderBody,
 } from "./styled";
 import { Box, Button, Grid, InputAdornment, TextField } from "@mui/material";
 import { AuthButton, ContentButton } from "./mui-styed";
@@ -17,6 +18,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useQuery } from "react-query";
 import { PROFILE_KEY } from "@common/key";
 import { Profile } from "@api/member/member";
+import SimpleSlider from "@components/slider/Slider";
 
 const Main = () => {
   const { data } = useQuery(PROFILE_KEY, Profile);
@@ -77,6 +79,9 @@ const Main = () => {
             />
           )}
         </MainHeader>
+        <SliderBody>
+          <SimpleSlider />
+        </SliderBody>
       </MainBody>
     </div>
   );
