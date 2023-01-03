@@ -4,6 +4,7 @@ import { Button, InputLabel } from "@mui/material";
 export const AuthButton = styled(Button)({
   color: "black",
   fontSize: " 16px",
+  fontWeight: "bold",
 });
 
 export const ContentButton = styled(Button)({

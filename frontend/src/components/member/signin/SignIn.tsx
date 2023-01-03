@@ -7,12 +7,7 @@ import { localSignIn } from "@api/auth/auth";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { getCookie } from "@common/util/cookie";
-import {
-  ACCESS_TOKEN,
-  GOOGLE_AUTH_URL,
-  KAKAO_AUTH_URL,
-  NAVER_AUTH_URL,
-} from "@components/member/oauth2/oAuth2RedrectUrl";
+import { ACCESS_TOKEN } from "@components/member/oauth2/oAuth2RedrectUrl";
 
 import { SignInPayload } from "@payload/auth/auth";
 import TextInput from "@components/control/TextInput";

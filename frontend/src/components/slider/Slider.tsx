@@ -14,7 +14,11 @@ const SimpleSlider = () => {
   return (
     <Slider {...settings}>
       <div>
-        <h3>1</h3>
+        <img
+          src={require("@assets/images/dining/detail/table/32_details_6.jpg")}
+          alt="blank"
+          width="500px"
+        />
       </div>
       <div>
         <h3>2</h3>

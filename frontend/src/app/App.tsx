@@ -9,10 +9,12 @@ import {
   privateComponentRouters,
   publicComponentRouters,
 } from "@components/route/componentRouter";
+import { CssBaseline } from "@mui/material";
 
 function App() {
   return (
     <div className="App">
+      <CssBaseline />
       <Router>
         <Routes>
           {authComponentRouters.map((route) => (
