@@ -44,7 +44,7 @@ const Main = () => {
 
   return (
     <div>
-      <Container maxWidth="lg" className={classes.mainContainer}>
+      <Container maxWidth="md" className={classes.mainContainer}>
         <Grid container spacing={1}>
           <Grid xs={4}>
             <MainLogoImg />
@@ -60,37 +60,11 @@ const Main = () => {
               팔로워
             </ContentButton>
           </Grid>
-          <Grid xs={3}>
-            <Box
-              component="form"
-              sx={{
-                "& .MuiTextField-root": { m: 1, width: "25ch" },
-              }}
-              noValidate
-              autoComplete="off"
-            >
-              <TextInput
-                name="productionSearch"
-                variant="outlined"
-                placeholder="상품검색"
-                size="small"
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <SearchIcon />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            </Box>
-          </Grid>
-          <Grid xs={1}>
+          <Grid xs={1} className={classes.contentGrid}>
             {!getCookie(ACCESS_TOKEN) ? (
-              <MainAuthItem>
-                <AuthButton variant="text" href="/auth/sign_in">
-                  로그인
-                </AuthButton>
-              </MainAuthItem>
+              <AuthButton variant="text" href="/auth/sign_in">
+                로그인
+              </AuthButton>
             ) : (
               <MainMemberProfile
                 src={
@@ -102,9 +76,7 @@ const Main = () => {
             )}
           </Grid>
         </Grid>
-        {/* <SliderBody> */}
         <SimpleSlider />
-        {/* </SliderBody> */}
       </Container>
     </div>
   );

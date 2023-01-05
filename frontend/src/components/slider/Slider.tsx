@@ -14,26 +14,49 @@ const SimpleSlider = () => {
   return (
     <Slider {...settings}>
       <div>
+        <h3>NATURAL COLOR IN DINING ROOM</h3>
         <img
-          src={require("@assets/images/dining/detail/table/32_details_6.jpg")}
+          src={require("@assets/images/banner/banner1.jpeg")}
           alt="blank"
-          width="500px"
+          width="852px"
+          height="492px"
         />
       </div>
       <div>
-        <h3>2</h3>
+        <h3>WOOD & FABRIC IN LIVING ROOM </h3>
+        <img
+          src={require("@assets/images/banner/banner2.jpeg")}
+          alt="blank"
+          width="852px"
+          height="492px"
+        />
       </div>
       <div>
-        <h3>3</h3>
+        <h3>COZY IN BED ROOM</h3>
+        <img
+          src={require("@assets/images/banner/banner3.jpeg")}
+          alt="blank"
+          width="852px"
+          height="492px"
+        />
       </div>
       <div>
-        <h3>4</h3>
+        <h3>O-MO SERIES AT MY HOME</h3>
+        <img
+          src={require("@assets/images/banner/banner4.jpeg")}
+          alt="blank"
+          width="852px"
+          height="492px"
+        />
       </div>
       <div>
-        <h3>5</h3>
-      </div>
-      <div>
-        <h3>6</h3>
+        <h3>BE PROFESSIONAL</h3>
+        <img
+          src={require("@assets/images/banner/banner4.jpeg")}
+          alt="blank"
+          width="852px"
+          height="492px"
+        />
       </div>
     </Slider>
   );
