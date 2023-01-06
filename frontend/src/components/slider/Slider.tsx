@@ -50,7 +50,7 @@ const SimpleSlider = () => {
         />
       </div>
       <div>
-        <h3>BE PROFESSIONAL</h3>
+        <h3>BE PROFESSIONAL </h3>
         <img
           src={require("@assets/images/banner/banner4.jpeg")}
           alt="blank"
