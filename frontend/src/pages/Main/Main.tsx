@@ -1,10 +1,5 @@
 import React from "react";
 import {
-  MainAuthItem,
-  MainBody,
-  MainContentItem,
-  MainHeader,
-  MainLogo,
   MainLogoImg,
   MainMemberProfile,
   // SliderBody,
@@ -27,6 +22,7 @@ import { PROFILE_KEY } from "@common/key";
 import { Profile } from "@api/member/member";
 import SimpleSlider from "@components/slider/Slider";
 import { makeStyles } from "@mui/styles";
+import ProdcutionTabs from "@components/prd-tabs";
 
 const useStyles = makeStyles({
   mainContainer: {
@@ -76,7 +72,10 @@ const Main = () => {
             )}
           </Grid>
         </Grid>
+        <hr />
         <SimpleSlider />
+        <hr />
+        <ProdcutionTabs />
       </Container>
     </div>
   );

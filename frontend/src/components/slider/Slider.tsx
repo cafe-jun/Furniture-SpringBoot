@@ -2,8 +2,16 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { makeStyles } from "@mui/styles";
+
+const useStyles = makeStyles({
+  sliderContainer: {
+    marginBottom: "50px",
+  },
+});
 
 const SimpleSlider = () => {
+  const classes = useStyles();
   var settings = {
     dots: true,
     infinite: true,
@@ -11,8 +19,9 @@ const SimpleSlider = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+
   return (
-    <Slider {...settings}>
+    <Slider {...settings} className={classes.sliderContainer}>
       <div>
         <h3>NATURAL COLOR IN DINING ROOM</h3>
         <img
