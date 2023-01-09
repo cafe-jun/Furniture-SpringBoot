@@ -22,7 +22,7 @@ import { PROFILE_KEY } from "@common/key";
 import { Profile } from "@api/member/member";
 import SimpleSlider from "@components/slider/Slider";
 import { makeStyles } from "@mui/styles";
-import ProdcutionTabs from "@components/prd-tabs";
+import ProdcutionTabs, { RadioItemModel } from "@components/prd-tabs";
 
 const useStyles = makeStyles({
   mainContainer: {
@@ -37,6 +37,35 @@ const useStyles = makeStyles({
 const Main = () => {
   const classes = useStyles();
   const { data } = useQuery(PROFILE_KEY, Profile);
+  const seriesItems: RadioItemModel[] = [
+    {
+      lable: "201",
+      value: "201",
+    },
+    {
+      lable: "301",
+      value: "301",
+    },
+    {
+      lable: "401",
+      value: "401",
+    },
+  ];
+
+  const modelItems: RadioItemModel[] = [
+    {
+      lable: "SOFA",
+      value: "SOFA",
+    },
+    {
+      lable: "TABLE",
+      value: "TABLE",
+    },
+    {
+      lable: "CHAIR",
+      value: "CHAIR",
+    },
+  ];
 
   return (
     <div>
@@ -75,7 +104,12 @@ const Main = () => {
         <hr />
         <SimpleSlider />
         <hr />
-        <ProdcutionTabs />
+        <Grid>
+          <ProdcutionTabs items={seriesItems} title={"SERIES"} />
+        </Grid>
+        <Grid>
+          <ProdcutionTabs items={modelItems} title={"MODEL"} />
+        </Grid>
       </Container>
     </div>
   );
